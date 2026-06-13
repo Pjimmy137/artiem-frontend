@@ -18,12 +18,27 @@ export class HotelService {
     switchMap(() => this.http.get<any[]>(this.url))
   );
 
-  // 3. Convertimos ese flujo reactivo en la SEÑAL que lee tu HTML
-  hoteles = toSignal(this.hoteles$, { initialValue: [] });
+  hotelesSignal = signal<any[]>([]);
+
+  constructor() {
+    this.recargarHoteles();
+  }
+
 
   // 4. El método mágico: limpia la recámara y obliga a pedir datos nuevos
-  recargarHoteles() {
-    this.refrescar$.next();
+ recargarHoteles() {
+    this.http.get<any[]>(this.url).subscribe({
+      next: (data) => {
+        this.hotelesSignal.set(data);
+      },
+      error: (err) => {
+        console.error('Error al traer hoteles desde Render:', err);
+      }
+    });
+  }
+
+  get hoteles() {
+    return this.hotelesSignal;
   }
 
   obtenerServiciosWellness(): Observable<any[]> {
