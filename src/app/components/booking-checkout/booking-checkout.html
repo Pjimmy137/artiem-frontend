@@ -1,0 +1,127 @@
+@if (datosReserva()) {
+  <div class="checkout-container">
+
+    <div class="progress-steps">
+      <span class="step done">✓ Elige estancia</span>
+      <span class="step active">2. Datos personales</span>
+      <span class="step link">3. Confirmación</span>
+    </div>
+
+    <div class="checkout-layout">
+
+      <div class="form-section">
+        <h2>Datos personales</h2>
+
+        <div class="input-group">
+          <label>Nombre <span class="required">(obligatorio)</span></label>
+          <input type="text" [(ngModel)]="nombre" placeholder="Introduce tu nombre">
+        </div>
+
+        <div class="input-group">
+          <label>Apellidos <span class="required">(obligatorio)</span></label>
+          <input type="text" [(ngModel)]="apellidos" placeholder="Introduce tus apellidos">
+        </div>
+
+        <div class="input-group">
+          <label>Email <span class="required">(obligatorio)</span></label>
+          <input type="email" [(ngModel)]="email" placeholder="ejemplo@artiem.com">
+        </div>
+
+        <div class="phone-row">
+          <div class="input-group prefijo">
+            <label>Prefijo</label>
+            <select [(ngModel)]="prefijo">
+              <option value="+34">+34</option>
+              <option value="+33">+33</option>
+              <option value="+44">+44</option>
+            </select>
+          </div>
+          <div class="input-group telefono">
+            <label>Teléfono <span class="required">(obligatorio)</span></label>
+            <input type="tel" [(ngModel)]="telefono" placeholder="600 000 000">
+          </div>
+        </div>
+
+        <div class="checkbox-group">
+          <input type="checkbox" id="terminos" [(ngModel)]="aceptaTerminos">
+          <label for="terminos">
+            Estoy de acuerdo y acepto los términos de pago, las políticas de cancelación, otras condiciones y privacidad.
+            <a href="#" class="legal-link">Más información</a> <span class="required">(obligatorio)</span>
+          </label>
+        </div>
+
+        <div class="secure-payment-info">
+          <h3>Pago seguro online</h3>
+          <p>Serás redireccionado para completar tu pago de forma encriptada de extremo a extremo.</p>
+        </div>
+      </div>
+
+      <div class="summary-section">
+        <div class="summary-card">
+          <h3>Resumen de la reserva</h3>
+
+          <div class="dates-display">
+            <div>
+              <strong>Entrada</strong>
+              <p>{{ datosReserva().fecha_entrada | date:'E, d MMM yyyy' }}</p>
+            </div>
+            <div>
+              <strong>Salida</strong>
+              <p>{{ datosReserva().fecha_salida | date:'E, d MMM yyyy' }}</p>
+            </div>
+          </div>
+
+          <div class="stay-details">
+            <h4>Tu reserva</h4>
+            <p>{{ datosReserva().noches }} noches, 1 hab.</p>
+            <span>{{ datosReserva().tipo_habitacion }}</span>
+          </div>
+
+          <div class="establishment-details">
+            <h4>Establecimiento</h4>
+            <p class="hotel-title">{{ datosReserva().hotel_nombre }}</p>
+            <a routerLink="/hotel/{{datosReserva().hotel_id}}" class="change-selection">Cambiar selección</a>
+          </div>
+
+          <hr class="divider">
+
+          <div class="price-breakdown">
+            <h3>Resumen de precio</h3>
+
+            <div class="price-row-item">
+              <span>Estancia base</span>
+              <span>{{ (datosReserva().precio_habitacion * datosReserva().noches).toFixed(2) }}€</span>
+            </div>
+
+            @if (datosReserva().extras.length > 0) {
+              <div class="price-row-item wellness-charge">
+                <span>Experiencias Wellness añadidas</span>
+                <span>{{ (total() - (datosReserva().precio_habitacion * datosReserva().noches)).toFixed(2) }}€</span>
+              </div>
+            }
+
+            <div class="price-row-item split-info">
+              <span>Pago garantizado en hotel (70%)</span>
+              <span>{{ pagoEnHotel() }}€</span>
+            </div>
+
+            <div class="price-row-item total-row">
+              <strong>Total Estancia:</strong>
+              <strong class="grand-total">{{ total() }}€</strong>
+            </div>
+
+            <button
+              class="btn-pay-now"
+              [disabled]="!formularioValido() || procesandoPago()"
+              (click)="ejecutarPago()">
+              {{ procesandoPago() ? 'Procesando Transacción...' : 'Pagar ahora ' + pagoAhora() + '€ (30%)' }}
+            </button>
+
+            <p class="hotel-disclaimer">El 70% restante ({{ pagoEnHotel() }}€) se abonará directamente en la recepción del hotel.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+}

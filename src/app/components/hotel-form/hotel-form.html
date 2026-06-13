@@ -1,0 +1,32 @@
+<main class="form-container">
+  <header class="form-header">
+    <h2>Añadir Nuevo Destino Artiem</h2>
+    <p>Introduce los datos para expandir la red de bienestar Freshpeople</p>
+  </header>
+
+  <form [formGroup]="form" (ngSubmit)="guardar()" class="modern-form">
+    <div class="form-group">
+      <label for="nombre">Nombre del Hotel</label>
+      <input id="nombre" type="text" formControlName="nombre" placeholder="Ej. Artiem Asturias">
+    </div>
+
+    <div class="form-group">
+      <label for="direccion">Dirección</label>
+      <input id="direccion" type="text" formControlName="direccion" placeholder="Ej. Calle de la brisa, 14">
+    </div>
+
+    <div class="form-group">
+      <label for="ciudad">Ciudad / Ubicación</label>
+      <input id="ciudad" type="text" formControlName="ciudad" placeholder="Ej. Villaviciosa">
+    </div>
+
+    <div class="form-group">
+      <label for="fotoUrl">URL de la Imagen de Portada</label>
+      <input id="fotoUrl" type="url" formControlName="fotoUrl" placeholder="https://images.unsplash.com/...">
+    </div>
+
+    <button type="submit" [disabled]="form.invalid" class="btn-submit">
+      Dar de Alta Hotel
+    </button>
+  </form>
+</main>

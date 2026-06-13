@@ -1,0 +1,172 @@
+@charset "UTF-8";
+/* Variables de diseño de la marca Artiem */
+:host {
+  --artiem-green: #789d4a;
+  --artiem-dark: #2d3436;
+  --text-main: #2d3436;
+  --text-muted: #636e72;
+  --bg-color: #f9fbf7;
+  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  --radius: 12px;
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  color: var(--text-main);
+}
+
+/* Cabecera */
+.main-header {
+  text-align: center;
+  margin-bottom: 50px;
+
+}
+
+.main-header h1 {
+  font-size: 2.5rem;
+  color: var(--artiem-dark);
+  font-weight: 700;
+  margin-bottom: 10px;
+  margin-top: 2000px;
+}
+
+.main-header .subtitle {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+
+/* Grid de Hoteles */
+.hotel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+/* Tarjeta de Hotel */
+.hotel-card {
+  background: #ffffff;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(120, 157, 74, 0.1);
+}
+
+.hotel-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(120, 157, 74, 0.12);
+}
+
+/* Contenedor de la imagen real */
+.card-image-container {
+  height: 220px;
+  position: relative;
+  overflow: hidden;
+  background-color: #f4f7f1;
+}
+
+/* La imagen en sí */
+.hotel-image {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover; /* Esto hace que la foto se adapte sin deformarse */
+  transition: var(--transition);
+}
+
+/* Efecto zoom muy pro cuando pasas el ratón por la tarjeta */
+.hotel-card:hover .hotel-image {
+  transform: scale(1.05);
+}
+
+.no-image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e9ecef;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: #ffffff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--artiem-green);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Contenido de la Tarjeta */
+.card-content {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card-content h3 {
+  font-size: 1.4rem;
+  margin: 0 0 10px 0;
+  color: var(--artiem-dark);
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+.location svg {
+  stroke: var(--artiem-green);
+}
+
+.btn-explore {
+  margin-top: auto;
+  background: transparent;
+  border: 2px solid var(--artiem-green);
+  color: var(--artiem-green);
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  width: 100%;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.btn-explore:hover {
+  background: var(--artiem-green);
+  color: #ffffff;
+}
+
+/* Estado Vacío */
+.empty-state {
+  grid-column: 1/-1;
+  text-align: center;
+  padding: 60px;
+  color: var(--text-muted);
+  background: #fff;
+  border-radius: var(--radius);
+  border: 2px dashed #ddd;
+}/*# sourceMappingURL=hotel-list.css.map */

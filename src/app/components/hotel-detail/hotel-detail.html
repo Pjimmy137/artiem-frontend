@@ -1,0 +1,242 @@
+@if (hotel()) {
+  <main class="detail-container">
+    <header
+      class="hero-fullscreen"
+      [style.backgroundImage]="'url(' + hotel()?.galeria_fotos?.[0] + ')'"
+    >
+      <div class="hero-filter">
+        <div class="hero-centered-title">
+          <span class="destination-tag">Destino Freshpeople</span>
+          <h1>{{ hotel().nombre }}</h1>
+          <p class="hero-location">📍 {{ hotel().ciudad }} — {{ hotel().direccion }}</p>
+        </div>
+      </div>
+    </header>
+
+    <section class="detail-content">
+      <div class="info-card">
+        <h3>Información del Destino</h3>
+        <p class="info-item"><strong>Ubicación:</strong> {{ hotel().ciudad }}</p>
+        <p class="info-item"><strong>Dirección:</strong> {{ hotel().direccion }}</p>
+        <p class="info-item"><strong>ID de Registro:</strong> #000{{ hotel().id_hotel }}</p>
+      </div>
+
+      <div class="experience-card">
+        <h3>La Experiencia Freshpeople</h3>
+        <p>
+          Bienvenido a un espacio diseñado exclusivamente para tu bienestar y desconexión. En los
+          destinos Artiem nos enfocamos en cuidar de tu salud, alimentación y descanso, rodeado del
+          mejor entorno local.
+        </p>
+        <div class="amenities-grid">
+          <span class="amenity">Sostenible</span>
+          <span class="amenity">Wellness</span>
+          <span class="amenity">Healthy Food</span>
+          <span class="amenity">Gym</span>
+        </div>
+      </div>
+    </section>
+    <section class="detail-gallery-section">
+      <h3>Inmersión Visual</h3>
+      <p class="gallery-subtitle">
+        Un recorrido por los rincones donde el diseño y la calma se encuentran.
+      </p>
+
+      <div class="gallery-grid">
+        @for (foto of hotel().galeria_fotos; track $index) {
+          <div class="gallery-item" [class]="'pic-' + $index">
+            <img [src]="foto" [alt]="'Captura de ' + hotel().nombre" />
+          </div>
+        }
+      </div>
+    </section>
+    <section class="benefits-section">
+      <div class="benefit-item">
+        <span class="benefit-icon">🌿</span>
+        <h3>Eco-Sostenible</h3>
+        <p>Reducimos nuestra huella de carbono cuidando activamente del entorno local.</p>
+      </div>
+      <div class="benefit-item">
+        <span class="benefit-icon">🧘</span>
+        <h3>Bienestar Integrado</h3>
+        <p>Espacios y actividades diseñados para reconectar tu cuerpo y mente.</p>
+      </div>
+      <div class="benefit-item">
+        <span class="benefit-icon">🍳</span>
+        <h3>Alimentación Fresh</h3>
+        <p>Gastronomía de proximidad con ingredientes naturales y de temporada.</p>
+      </div>
+    </section>
+    <section class="booking-layout">
+      <div class="col-rooms">
+        <h3 class="step-title">1. Selecciona Tipo</h3>
+        <div class="rooms-list">
+          @for (item of tiposDeHabitacion(); track item.tipo) {
+            <div
+              class="type-card"
+              [class.selected]="tipoSeleccionado()?.tipo === item.tipo"
+              [class.no-stock]="item.stock === 0"
+              (click)="item.stock > 0 && tipoSeleccionado.set(item)"
+            >
+              <div class="card-header">
+                <h4>{{ item.tipo }}</h4>
+                <span class="stock-badge" [class.alert]="item.stock < 3">
+                  {{ item.stock > 0 ? 'Quedan ' + item.stock : 'Agotado' }}
+                </span>
+              </div>
+
+              <div class="card-footer">
+                <p class="price-tag">
+                  <span>{{ item.precio }}€</span> / noche
+                </p>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="col-calendar">
+        <h3 class="step-title">2. Fechas de Estancia</h3>
+
+        <div class="calendar-box">
+          <div class="calendar-nav">
+            <button (click)="cambiarMes(-1)">&larr;</button>
+            <span>{{ nombresMeses[mesActual()] }} {{ anioActual() }}</span>
+            <button (click)="cambiarMes(1)">&rarr;</button>
+          </div>
+
+          <div class="calendar-grid">
+            @for (diaNom of nombresDias; track diaNom) {
+              <div class="weekday-header">{{ diaNom }}</div>
+            }
+
+            @for (dia of diasDelCalendario(); track $index) {
+              <div
+                class="calendar-day"
+                [class.empty]="!dia"
+                [class.selected]="esDiaSeleccionado(dia)"
+                [class.in-range]="estaEnRango(dia)"
+                (click)="seleccionarDia(dia)"
+              >
+                {{ dia ? dia.getDate() : '' }}
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="col-summary">
+        <h3 class="step-title">Tu Reserva</h3>
+
+        <div class="sticky-summary">
+          @if (tipoSeleccionado()) {
+            <div class="summary-receipt">
+              <div class="receipt-row">
+                <span class="label">Estancia:</span>
+                <span class="val truncate">{{ tipoSeleccionado().tipo }}</span>
+              </div>
+
+              <div class="receipt-row">
+                <span class="label">Entrada:</span>
+                <span class="val">{{
+                  fechaEntrada() ? fechaEntrada()!.toLocaleDateString() : '---'
+                }}</span>
+              </div>
+
+              <div class="receipt-row">
+                <span class="label">Salida:</span>
+                <span class="val">{{
+                  fechaSalida() ? fechaSalida()!.toLocaleDateString() : '---'
+                }}</span>
+              </div>
+
+              <div class="receipt-row">
+                <span class="label">Noches totales:</span>
+                <span class="val">{{ numeroNoches() }}</span>
+              </div>
+
+              <hr class="divider" />
+
+              <div class="receipt-total">
+                <span>Total estimado:</span>
+                <span class="grand-price">{{ precioTotal() }}€</span>
+              </div>
+
+              <button
+                class="btn-submit"
+                [disabled]="numeroNoches() === 0"
+                (click)="abrirModalExtras()"
+              >
+                Reservar Ahora
+              </button>
+            </div>
+          } @else {
+            <div class="summary-empty">
+              <p>
+                Elige un tipo de habitación y tus fechas preferidas para calcular tu presupuesto.
+              </p>
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+} @else {
+  <div class="loading-spinner">
+    <p>Cargando espacio de bienestar...</p>
+  </div>
+}
+@if (mostrarModalExtras()) {
+  <div class="modal-backdrop">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h2>Añadir extras</h2>
+        <button class="btn-close" (click)="cerrarModalExtras()">&times;</button>
+      </div>
+
+      <div class="modal-body-scroll">
+        <div class="extras-grid">
+          @for (extra of serviciosWellness(); track extra.id_servicio) {
+            <div class="extra-card">
+              <div class="extra-img-container">
+                <img [src]="extra.foto_url" [alt]="extra.nombre" class="extra-thumb" />
+              </div>
+
+              <div class="extra-content">
+                <h3>{{ extra.nombre }}</h3>
+                <p>{{ extra.descripcion }}</p>
+                <span class="extra-price">{{ extra.precio_extra }} €</span>
+
+                <div class="extra-footer">
+                  <p class="extra-price"><span>{{ extra.precio_extra }}€</span></p>
+                  <button
+                    class="btn-add-extra"
+                    [class.btn-remove]="esExtraSeleccionado(extra.id_servicio)"
+                    (click)="toggleExtra(extra)">
+                    {{ esExtraSeleccionado(extra.id_servicio) ? 'Quitar' : 'Añadir' }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+
+        <div class="scroll-arrow-indicator">&#x2193;</div>
+      </div>
+
+      <div class="modal-footer">
+        <div class="footer-price-summary">
+          <span class="total-amount">{{ precioTotal() }}€</span>
+          <span class="tax-info"
+            >Impuestos incluidos <br />
+            <a href="#">Detalles del precio</a></span
+          >
+        </div>
+
+        <button class="btn-continue-booking" (click)="finalizarReservaConTodo()">
+          {{ extrasSeleccionados().length > 0 ? 'Continuar con extras' : 'Continuar sin extras' }}
+        </button>
+      </div>
+    </div>
+  </div>
+}

@@ -1,0 +1,84 @@
+.artiem-nav {
+  height: 70px;
+  background: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  font-family: 'Inter', sans-serif;
+}
+
+.nav-logo {
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: #2d3436;
+  font-size: 1.4rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #636e72;
+  margin-left: 25px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  padding-bottom: 5px;
+}
+
+.nav-links a:hover, .active-link {
+  color: #789d4a !important; /* Verde Artiem */
+  border-bottom: 2px solid #789d4a;
+}
+
+/* Contenedor principal de la barra de navegación */
+.artiem-nav {
+  display: flex;
+  align-items: center; /* 🌟 Alinea verticalmente el logo y los links al centro */
+  justify-content: space-between; /* Separa el logo a la izquierda y los links a la derecha */
+  padding: 15px 30px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* Envoltura del logo para controlar el clic */
+.nav-logo-link {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.nav-logo-link:hover {
+  transform: scale(1.02); /* Efecto sutil al pasar el cursor */
+}
+
+/* Control exacto del tamaño de la imagen del logo */
+.nav-logo-img {
+  height: 55px; /* Ajusta este valor para que quede a la proporción perfecta de tu barra */
+  width: auto;
+  display: block;
+}
+
+/* Contenedor de los enlaces a los hoteles */
+.nav-links {
+  display: flex;
+  gap: 20px; /* Espaciado uniforme entre cada hotel */
+  align-items: center;
+}
+
+/* Estilo para los enlaces del menú */
+.nav-links a {
+  text-decoration: none;
+  color: #333333;
+  font-weight: 500;
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover,
+.active-link {
+  color: #4a5d4e; /* O el color corporativo que estés usando en Artiem */
+}

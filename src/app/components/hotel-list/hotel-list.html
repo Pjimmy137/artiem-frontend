@@ -1,0 +1,46 @@
+<main class="container">
+
+  @if (mostrarAlertaExito()) {
+    <div style="background-color: #84cc16; color: white; padding: 1rem; text-align: center; font-weight: bold; position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 99999; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); animation: fade 0.5s;">
+      🎉 Reserva realizada correctamente. ¡Te esperamos en Artiem!
+    </div>
+  }
+  <header class="main-header" style="margin-top: 100px;">
+    <h1>Nuestros Hoteles Artiem</h1>
+    <p class="subtitle">Descubre espacios diseñados para tu bienestar y desconexión</p>
+  </header>
+
+  <div class="hotel-grid">
+    @for (hotel of listaHoteles(); track hotel.id_hotel) {
+    <article class="hotel-card">
+      <div class="card-image-container">
+        @if (hotel.galeria_fotos && hotel.galeria_fotos.length > 0) {
+        <img [src]="hotel.galeria_fotos[0]" [alt]="hotel.nombre" class="hotel-image">
+        } @else {
+        <div class="no-image-placeholder">No hay foto disponible</div>
+        }
+        <span class="badge">{{ hotel.ciudad }}</span>
+      </div>
+
+      <div class="card-content">
+        <h3>{{ hotel.nombre }}</h3>
+        <p class="location">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+          {{ hotel.ciudad }}
+        </p>
+        <a [routerLink]="['/hoteles', hotel.id_hotel]" class="btn-explore">
+          Explorar experiencia
+        </a>
+      </div>
+    </article>
+    } @empty {
+    <div class="empty-state">
+      <p>Buscando oasis de tranquilidad...</p>
+    </div>
+    }
+  </div>
+</main>

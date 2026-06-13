@@ -1,0 +1,133 @@
+.checkout-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Pasos superiores */
+.progress-steps {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+  color: #64748b;
+}
+.step.done { color: #84cc16; font-weight: 600; }
+.step.active { color: #0f172a; font-weight: bold; border-bottom: 2px solid #84cc16; padding-bottom: 4px; }
+
+/* Distribución de pantalla */
+.checkout-layout {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+/* Inputs y estructura del formulario */
+.form-section {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+.form-section h2 { margin-top: 0; font-size: 1.5rem; margin-bottom: 1.5rem; }
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.25rem;
+}
+.input-group label { font-size: 0.9rem; font-weight: 500; margin-bottom: 0.5rem; color: #334155; }
+.required { color: #ef4444; font-size: 0.8rem; }
+.input-group input, .input-group select {
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.phone-row { display: flex; gap: 15px; }
+.phone-row .prefijo { width: 100px; }
+.phone-row .telefono { flex-grow: 1; }
+
+.checkbox-group {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: #475569;
+  line-height: 1.5;
+}
+.checkbox-group input { margin-top: 3px; }
+.legal-link { color: #84cc16; text-decoration: underline; }
+
+.secure-payment-info {
+  margin-top: 2.5rem;
+  background: #f8fafc;
+  padding: 1.25rem;
+  border-radius: 8px;
+  border-left: 4px solid #84cc16;
+}
+.secure-payment-info h3 { margin: 0 0 0.25rem 0; font-size: 1rem; color: #0f172a; }
+.secure-payment-info p { margin: 0; font-size: 0.85rem; color: #64748b; }
+
+/* Card lateral derecho */
+.summary-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+.summary-card h3 { margin-top: 0; font-size: 1.2rem; border-bottom: 1px solid #f1f5f9; padding-bottom: 0.75rem; }
+
+.dates-display {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  background: #f8fafc;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+.dates-display strong { font-size: 0.8rem; color: #64748b; text-transform: uppercase; }
+.dates-display p { margin: 2px 0 0 0; font-size: 0.9rem; font-weight: 600; }
+
+.stay-details h4, .establishment-details h4 { margin: 0.75rem 0 0.25rem 0; font-size: 0.85rem; color: #64748b; }
+.stay-details p, .establishment-details p { margin: 0; font-size: 0.95rem; font-weight: 600; }
+.stay-details span { font-size: 0.85rem; color: #475569; }
+.change-selection { display: inline-block; font-size: 0.85rem; color: #84cc16; margin-top: 4px; text-decoration: underline; }
+
+.divider { border: 0; border-top: 1px solid #e2e8f0; margin: 1.5rem 0; }
+
+.price-row-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+  color: #475569;
+}
+.wellness-charge { color: #0284c7; font-weight: 500; }
+.split-info { font-style: italic; color: #64748b; border-bottom: 1px dashed #e2e8f0; padding-bottom: 0.5rem; }
+
+.total-row { font-size: 1.1rem; color: #0f172a; margin-top: 1rem; padding-top: 0.5rem; }
+.grand-total { font-size: 1.4rem; color: #0f172a; font-weight: 800; }
+
+.btn-pay-now {
+  width: 100%;
+  background: #84cc16; /* Verde Artiem */
+  color: #fff;
+  border: none;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1.25rem;
+  transition: background 0.2s;
+}
+.btn-pay-now:hover:not(:disabled) { background: #65a30d; }
+.btn-pay-now:disabled { background: #cbd5e1; cursor: not-allowed; }
+
+.hotel-disclaimer { font-size: 0.75rem; color: #64748b; text-align: center; margin-top: 8px; line-height: 1.4; }

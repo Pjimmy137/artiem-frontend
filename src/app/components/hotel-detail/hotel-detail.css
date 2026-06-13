@@ -1,0 +1,812 @@
+:host {
+  --artiem-green: #789d4a;
+  --artiem-dark: #2d3436;
+}
+
+.detail-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+.detail-header {
+  margin-bottom: 20px;
+}
+
+.btn-back {
+  color: #636e72;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.btn-back:hover {
+  color: var(--artiem-green);
+}
+
+.detail-hero {
+  height: 450px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 10%, rgba(0,0,0,0.1) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 40px;
+}
+
+.hero-overlay h1 {
+  color: white;
+  font-size: 2.8rem;
+  margin: 10px 0 0 0;
+}
+
+.badge-city {
+  background: var(--artiem-green);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.detail-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.info-card, .experience-card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+}
+
+.info-card h3, .experience-card h3 {
+  color: var(--artiem-dark);
+  margin-top: 0;
+  border-bottom: 2px solid #f1f2f6;
+  padding-bottom: 12px;
+}
+
+.info-item {
+  margin: 16px 0;
+  color: #2d3436;
+  font-size: 1rem;
+}
+
+.experience-card p {
+  color: #636e72;
+  line-height: 1.7;
+}
+
+.amenities-grid {
+  display: flex;
+  gap: 12px;
+  margin-top: 25px;
+  flex-wrap: wrap;
+}
+
+.amenity {
+  background: #f1f9ec;
+  color: var(--artiem-green);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.loading-spinner {
+  text-align: center;
+  padding: 100px;
+  color: #636e72;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+  .detail-content {
+    grid-template-columns: 1fr;
+  }
+}
+/* Estilos para la nueva sección de galería */
+.detail-gallery-section {
+  margin-top: 60px;
+  border-top: 2px solid #f1f2f6;
+  padding-top: 40px;
+}
+
+.detail-gallery-section h3 {
+  color: var(--artiem-dark);
+  font-size: 1.8rem;
+  margin-bottom: 5px;
+}
+
+.gallery-subtitle {
+  color: #636e72;
+  margin-bottom: 30px;
+  font-size: 1rem;
+}
+
+/* El contenedor Grid */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 220px;
+  gap: 20px;
+}
+
+.gallery-item {
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+/* Efecto hover premium */
+.gallery-item:hover img {
+  transform: scale(1.06);
+}
+
+/* 🌟 Asimetría de las fotos (Clases dinámicas por índice) */
+.pic-0 {
+  grid-column: span 2;
+  grid-row: span 2; /* La primera foto toma protagonismo de 2x2 */
+}
+
+.pic-1 {
+  grid-column: span 2;
+}
+
+/* Ajuste responsive para móviles */
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 250px;
+  }
+
+  .pic-0, .pic-1 {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}
+/* Sección de Habitaciones */
+.detail-rooms-section {
+  margin-top: 60px;
+  border-top: 2px solid #f1f2f6;
+  padding-top: 40px;
+  margin-bottom: 60px;
+}
+
+.detail-rooms-section h3 {
+  color: var(--artiem-dark);
+  font-size: 1.8rem;
+  margin-bottom: 5px;
+}
+
+.rooms-subtitle {
+  color: #636e72;
+  margin-bottom: 30px;
+}
+
+/* Rejilla de tarjetas */
+.rooms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 25px;
+}
+
+/* Tarjeta de habitación */
+.room-card {
+  background: #ffffff;
+  border: 1px solid #e1e8ed;
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.01);
+}
+
+.room-card:hover:not(.room-unavailable) {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.05);
+  border-color: var(--artiem-green);
+}
+
+/* Estilos si la habitación está en mantenimiento u ocupada */
+.room-unavailable {
+  background: #f8f9fa;
+  border-color: #e2e8f0;
+  opacity: 0.75;
+}
+
+/* Cabecera interna */
+.room-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.room-number {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #636e72;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Badges de estado dinámicos según tu columna */
+.room-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.room-badge.disponible {
+  background: #eef9f1;
+  color: #2e7d32;
+}
+
+.room-badge.mantenimiento {
+  background: #fff4e5;
+  color: #b78103;
+}
+
+.room-badge.ocupada {
+  background: #fdf2f2;
+  color: #c81e1e;
+}
+
+/* Cuerpo de la tarjeta */
+.room-body h4 {
+  color: var(--artiem-dark);
+  font-size: 1.3rem;
+  margin: 0 0 10px 0;
+}
+
+.room-features {
+  color: #636e72;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 25px;
+}
+
+/* Footer y Precios */
+.room-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.room-price {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.price-amount {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--artiem-dark);
+}
+
+.price-text {
+  font-size: 0.85rem;
+  color: #636e72;
+}
+
+/* Botón de acción interno */
+.btn-book {
+  background: var(--artiem-green);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-book:hover:not(:disabled) {
+  background: #64833e;
+}
+
+.btn-book:disabled {
+  background: #e2e8f0;
+  color: #a0aec0;
+  cursor: not-allowed;
+}
+
+/* Forzar que el Hero ocupe el 100% de la pantalla restando el Navbar */
+.hero-fullscreen {
+  height: calc(100vh - 70px);
+  margin-top: 70px; /* Evita que el navbar tape el contenido */
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  width: 100%;
+}
+
+.hero-filter {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45); /* Oscurece la imagen para leer el texto */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-centered-title {
+  text-align: center;
+  color: #ffffff;
+  padding: 20px;
+}
+
+.hero-centered-title h1 {
+  font-size: 4rem;
+  margin: 10px 0;
+  font-weight: 700;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.destination-tag {
+  background: #789d4a;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.hero-location {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+/* Sección de Beneficios Minimalista */
+.benefits-section {
+  display: flex;
+  justify-content: space-around;
+  max-width: 1200px;
+  margin: 80px auto;
+  padding: 0 20px;
+  gap: 40px;
+}
+
+.benefit-item {
+  text-align: center;
+  flex: 1;
+}
+
+.benefit-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.benefit-item h3 {
+  font-size: 1.3rem;
+  color: #2d3436;
+  margin-bottom: 10px;
+}
+
+.benefit-item p {
+  color: #636e72;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .hero-centered-title h1 { font-size: 2.5rem; }
+  .benefits-section { flex-direction: column; margin: 40px auto; }
+}
+
+
+
+.booking-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 2fr 1fr; /* Exactamente la proporción 1/4 - 2/4 - 1/4 ensanchando el calendario */
+  gap: 2.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 3rem 20px;
+  font-family: system-ui, sans-serif;
+}
+
+.step-title {
+  font-size: 1.2rem;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* --- TARJETAS DE TIPOS DE HABITACIÓN --- */
+.type-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.type-card:hover {
+  border-color: #10b981;
+  transform: translateY(-2px);
+}
+.type-card.selected {
+  border-color: #10b981;
+  background-color: #f0fdf4;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.1);
+}
+.type-card.no-stock {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+.card-header h4 {
+  margin: 0;
+  font-size: 1rem;
+  color: #334155;
+}
+.stock-badge {
+  font-size: 0.75rem;
+  background: #e2e8f0;
+  color: #475569;
+  padding: 2px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.stock-badge.alert {
+  background: #ffedd5;
+  color: #ea580c;
+}
+.card-footer {
+  margin-top: 1rem;
+  text-align: right;
+}
+.price-tag {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+.price-tag span {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* --- CALENDARIO ARTESANAL GRID --- */
+.calendar-box {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+.calendar-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+.calendar-nav button {
+  background: #f1f5f9;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  text-align: center;
+}
+.weekday-header {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #94a3b8;
+  padding: 10px 0;
+}
+.calendar-day {
+  padding: 14px 0;
+  font-size: 0.95rem;
+  color: #334155;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+.calendar-day:not(.empty):hover {
+  background: #f1f5f9;
+}
+.calendar-day.empty {
+  cursor: default;
+}
+.calendar-day.selected {
+  background-color: #10b981 !important;
+  color: #fff;
+  font-weight: 600;
+}
+.calendar-day.in-range {
+  background-color: rgba(16, 185, 129, 0.15);
+  border-radius: 0;
+}
+
+/* --- RESUMEN FIJO --- */
+.sticky-summary {
+  position: sticky;
+  top: 100px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+.summary-receipt .receipt-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+.receipt-row .label { color: #64748b; }
+.receipt-row .val { font-weight: 600; color: #1e293b; }
+.truncate { max-width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.divider { border: 0; border-top: 1px dashed #cbd5e1; margin: 1.5rem 0; }
+.receipt-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.grand-price { font-size: 1.6rem; font-weight: 800; color: #10b981; }
+.btn-submit {
+  width: 100%;
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 1rem;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-submit:disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+}
+.summary-empty {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* --- BACKDROP OSCURO --- */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4); /* Desenfoque sutil de fondo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  backdrop-filter: blur(2px);
+}
+
+/* --- VENTANA CONTENEDORA --- */
+.modal-window {
+  background: #fff;
+  width: 920px;
+  max-width: 95%;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  animation: slideUp 0.25s ease-out;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+.modal-header h2 { margin: 0; font-size: 1.4rem; color: #1e293b; font-weight: 600; }
+.btn-close { background: none; border: none; font-size: 2rem; cursor: pointer; color: #94a3b8; }
+
+/* --- CUERPO SCROLLABLE (MÁXIMA ALTURA CONTROLADA) --- */
+.modal-body-scroll {
+  padding: 2rem;
+  max-height: 480px; /* Evita que el modal se salga de la pantalla */
+  overflow-y: auto;  /* Habilita el scroll vertical */
+  position: relative;
+}
+
+/* --- GRID DE DOS COLUMNAS --- */
+.extras-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 Columnas clavaditas */
+  gap: 1.5rem;
+}
+
+.extra-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s;
+}
+.extra-card.extra-active {
+  border-color: #10b981;
+  background-color: #f8fafc;
+}
+
+.extra-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.extra-info {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.extra-info h3 { margin: 0 0 0.5rem 0; font-size: 1.1rem; color: #0f172a; }
+.extra-desc { font-size: 0.85rem; color: #64748b; line-height: 1.4; margin: 0 0 1rem 0; flex-grow: 1; }
+
+.extra-selectors {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+.mock-select {
+  font-size: 0.8rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 6px 12px;
+  border-radius: 6px;
+  color: #475569;
+}
+
+.extra-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 1rem;
+}
+.extra-price { margin: 0; font-size: 0.8rem; color: #64748b; }
+.extra-price span { font-size: 1.3rem; font-weight: 700; color: #0f172a; }
+
+.btn-add-extra {
+  background: #fff;
+  color: #10b981;
+  border: 1px solid #10b981;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-add-extra:hover { background: #f0fdf4; }
+.btn-add-extra.btn-remove {
+  background: #ef4444;
+  color: #fff;
+  border-color: #ef4444;
+}
+
+.scroll-arrow-indicator {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #94a3b8;
+  margin-top: 1.5rem;
+  animation: bounce 2s infinite;
+}
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-6px); }
+  60% { transform: translateY(-3px); }
+}
+
+/* --- FOOTER FIJO DEL MODAL --- */
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  border-top: 1px solid #f1f5f9;
+  background: #f8fafc;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.footer-price-summary {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.total-amount { font-size: 1.8rem; font-weight: 800; color: #0f172a; }
+.tax-info { font-size: 0.75rem; color: #64748b; line-height: 1.3; }
+.tax-info a { color: #10b981; text-decoration: underline; }
+
+.btn-continue-booking {
+  background: #84cc16; /* El verde oliva/pistacho corporativo de Artiem */
+  color: #fff;
+  border: none;
+  padding: 1rem 2.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-continue-booking:hover {
+  background: #65a30d;
+}
+
+/* Contenedor de la foto para recortar excedentes */
+.extra-img-container {
+  width: 100%;
+  height: 140px;
+  overflow: hidden;
+  border-radius: 8px 8px 0 0; /* Bordes redondeados solo arriba */
+}
+
+/* Ajuste inteligente de la imagen de Unsplash */
+.extra-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Hace que la foto llene el espacio de forma elegante sin deformarse */
+  transition: transform 0.3s ease;
+}
+
+/* Efecto sutil al pasar el ratón por encima de la tarjeta */
+.extra-card:hover .extra-thumb {
+  transform: scale(1.05);
+}
