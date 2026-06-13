@@ -8,7 +8,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 })
 export class HotelService {
   private http = inject(HttpClient);
-  private url = 'http://127.0.0.1:8000/api/hoteles';
+  private url = 'https://artiem-backend.onrender.com/api/hoteles';
 
   // 1. Este "gatillo" emitirá un evento cada vez que queramos actualizar la lista
   private refrescar$ = new BehaviorSubject<void>(undefined);
