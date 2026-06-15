@@ -721,8 +721,8 @@
   border-top: 1px solid #f1f5f9;
   padding-top: 1rem;
 }
-.extra-price { margin: 0; font-size: 0.8rem; color: #64748b; }
-.extra-price span { font-size: 1.3rem; font-weight: 700; color: #0f172a; }
+.extra-price span { font-size: 1.3rem; font-weight: 700;
+  color: #2d3748;; }
 
 .btn-add-extra {
   background: #fff;
