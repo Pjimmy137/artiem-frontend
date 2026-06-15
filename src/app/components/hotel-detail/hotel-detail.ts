@@ -33,7 +33,6 @@ export class HotelDetail implements OnInit {
     effect(() => {
       const idActual = this.idSignal();
       if (idActual > 0) {
-        // 🔄 Volvemos a pedir los datos del nuevo hotel a Laravel automáticamente
         this.hotelService.getHotelById(idActual).subscribe({
           next: (datos) => this.hotel.set(datos),
           error: (err) => console.error('Error al traer el detalle:', err),
@@ -109,7 +108,6 @@ export class HotelDetail implements OnInit {
     'Diciembre',
   ];
 
-  // 🔥 EL REDUCTOR MÁGICO: Agrupa las 30 habitaciones en sus 5 o 6 tipos únicos
   tiposDeHabitacion = computed(() => {
     const todasLasHabs = this.hotel()?.habitaciones || [];
     const agrupacion = new Map<string, { tipo: string; precio: number; stock: number }>();
@@ -198,14 +196,23 @@ export class HotelDetail implements OnInit {
   precioTotal = computed(() => {
     const hab = this.tipoSeleccionado();
     const noches = this.numeroNoches();
-    const costeEstancia = hab && noches > 0 ? hab.precio * noches : 0;
+    const costeEstancia = hab && noches > 0 ? Number(hab.precio) * Number(noches) : 0;
 
-    // Sumamos el precio de cada extra que esté en la señal de seleccionados
-    const costeExtras = this.extrasSeleccionados().reduce((total, extra) => total + extra.precio_extra, 0);
+    console.log('--- DIAGNÓSTICO DE PRECIOS ---');
+    console.log('Coste Estancia Calculado:', costeEstancia);
+    console.log('Array de Extras Seleccionados:', this.extrasSeleccionados());
 
+    const costeExtras = this.extrasSeleccionados().reduce((total, extra) => {
+      // Este log te dirá exactamente qué estructura tiene el objeto en producción
+      console.log('Objeto Extra individual dentro del reduce:', extra);
+
+      const precio = extra && extra.precio_extra ? Number(extra.precio_extra) : 0;
+      return total + precio;
+    }, 0);
+
+    console.log('Coste Total Extras Calculado:', costeExtras);
     return costeEstancia + costeExtras;
   });
-
   // MÉTODOS DE CONTROL PARA EL MODAL Y EXTRAS
   abrirModalExtras() {
     if (this.numeroNoches() > 0 && this.tipoSeleccionado()) {
