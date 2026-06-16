@@ -451,6 +451,7 @@
     height: 416px;
     overflow-y: auto;
     padding-right: 8px;
+    border: 1px solid #e2e8f0;
 }
 
 .type-card {
@@ -573,7 +574,7 @@
 
 /* --- RESUMEN FIJO --- */
 .sticky-summary {
-  height: 416px;
+  height: 367px;
   top: 100px;
   background: #fff;
   border: 1px solid #e2e8f0;
