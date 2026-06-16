@@ -21,7 +21,10 @@ export class BookingCheckoutComponent implements OnInit {
   // Recuperamos la información del paso anterior
   datosReserva = this.bookingService.reservaActual;
 
-  // Modelo del Formulario de la captura
+  // 🌟 NUEVO: Exponemos los extras seleccionados directamente para el HTML de resumen
+  extrasSeleccionados = computed(() => this.datosReserva()?.extras || []);
+
+  // Modelo del Formulario
   nombre = signal<string>('');
   apellidos = signal<string>('');
   email = signal<string>('');
@@ -30,13 +33,12 @@ export class BookingCheckoutComponent implements OnInit {
   aceptaTerminos = signal<boolean>(false);
 
   // Estados de carga de la pasarela simulada
-  procesandoPago = signal<boolean>(false);
   total = computed(() => this.datosReserva()?.precio_total || 0);
   pagoAhora = computed(() => Number((this.total() * 0.3).toFixed(2)));
   pagoEnHotel = computed(() => Number((this.total() * 0.7).toFixed(2)));
+  procesandoPago = signal<boolean>(false);
 
   ngOnInit() {
-    // Si el usuario refresca la página de golpe y se vacía el servicio, lo devolvemos al inicio
     if (!this.datosReserva()) {
       this.router.navigate(['/']);
     }
@@ -51,7 +53,6 @@ export class BookingCheckoutComponent implements OnInit {
     });
   }
 
-  // Comprobación rápida de validación de campos obligatorios
   formularioValido = computed(() => {
     return (
       this.nombre().trim() !== '' &&
@@ -68,7 +69,11 @@ export class BookingCheckoutComponent implements OnInit {
     this.procesandoPago.set(true);
 
     // Formateador de fechas seguro
-    const formatear = (d: Date) => d.toISOString().split('T')[0];
+    const formatear = (d: Date) => {
+      if (!d) return '';
+      const fecha = new Date(d);
+      return fecha.toISOString().split('T')[0];
+    };
 
     // Preparación definitiva del Payload para Laravel
     const payload = {
@@ -82,22 +87,23 @@ export class BookingCheckoutComponent implements OnInit {
         email: this.email(),
         telefono: `${this.prefijo()}${this.telefono()}`,
       },
-      extras: this.datosReserva().extras.map((e: any) => e.id),
+      // 🌟 CORREGIDO: Mapeamos el objeto completo asegurando 'id_servicio' y 'precio_extra' de tu DB
+      extras: this.extrasSeleccionados().map((e: any) => ({
+        id_servicio: e.id_servicio,
+        nombre: e.nombre,
+        precio_extra: e.precio_extra
+      })),
       monto_total: this.total(),
       monto_pagado_online: this.pagoAhora(),
       estado: 'confirmada',
     };
 
-    // Llamamos a Laravel para que busque habitación física libre, guarde cliente y cree la reserva
     this.hotelService.crearReservaCompleta(payload).subscribe({
       next: (res: any) => {
-        // 🌟 Añadido : any para silenciar el error de TS
         this.procesandoPago.set(false);
-        // Redirigimos a la Home enviando un flag de éxito en el estado de la ruta
         this.router.navigate(['/'], { queryParams: { reservaExito: 'true' } });
       },
       error: (err: any) => {
-        // 🌟 Añadido : any para silenciar el error de TS
         this.procesandoPago.set(false);
         alert(
           'Error al procesar la reserva en el servidor. Asegúrate de que hay habitaciones de este tipo disponibles para esas fechas.',

@@ -71,17 +71,28 @@
             </div>
           </div>
 
+          <div class="establishment-details">
+            <h4>Establecimiento</h4>
+            <p class="hotel-title">{{ datosReserva().hotel_nombre }}</p>
+            <a routerLink="/hotel/{{datosReserva().hotel_id}}" class="change-selection">Cambiar selección</a>
+          </div>
+
           <div class="stay-details">
             <h4>Tu reserva</h4>
             <p>{{ datosReserva().noches }} noches, 1 hab.</p>
             <span>{{ datosReserva().tipo_habitacion }}</span>
           </div>
 
-          <div class="establishment-details">
-            <h4>Establecimiento</h4>
-            <p class="hotel-title">{{ datosReserva().hotel_nombre }}</p>
-            <a routerLink="/hotel/{{datosReserva().hotel_id}}" class="change-selection">Cambiar selección</a>
+          <div class="resumen-extras" *ngIf="extrasSeleccionados().length > 0">
+            <h4 style="font-size: 0.95rem; color: #718096; margin-bottom: 8px; font-weight: 600;">Experiencias Wellness:</h4>
+            <ul style="list-style: none; padding: 0; margin: 0 0 16px 0;">
+              <li *ngFor="let extra of extrasSeleccionados()" style="display: flex; justify-content: space-between; font-size: 0.9rem; color: #2d3748; margin-bottom: 6px;">
+                <span>✨ {{ extra.nombre }}</span>
+                <span style="font-weight: 600;">{{ extra.precio_extra }}€</span>
+              </li>
+            </ul>
           </div>
+
 
           <hr class="divider">
 
