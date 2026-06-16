@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-/* Variables de diseño de la marca Artiem */
 :host {
   --artiem-green: #789d4a;
   --artiem-dark: #2d3436;
@@ -9,21 +8,31 @@
   --bg-color: #f9fbf7;
   --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   --radius: 12px;
-  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition: all 0.3s ease;
+}
+
+/* --- Contenedor de la Página Principal (Aislamiento de layout) --- */
+.artiem-home-page {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background-color: var(--bg-color);
+  overflow-x: hidden;
 }
 
 /* ==========================================================================
-   📸 PORTADA HERO ESTILO ARTIEM OFICIAL
+   📸 PORTADA HERO
    ========================================================================== */
 .home-hero {
   position: relative;
   width: 100%;
-  height: calc(100vh - 70px);
+  height: 75vh; /* Proporciones óptimas según el diseño original */
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #2d3436;
+  background: var(--artiem-dark);
 }
 
 .hero-bg-split {
@@ -80,7 +89,7 @@
 
 .btn-hero-action {
   background: #ffffff;
-  color: #2d3436;
+  color: var(--artiem-dark);
   border: none;
   padding: 14px 32px;
   font-size: 1rem;
@@ -88,7 +97,7 @@
   letter-spacing: 1px;
   border-radius: 4px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: var(--transition);
 }
 
 .btn-hero-action:hover {
@@ -98,7 +107,7 @@
 }
 
 /* ==========================================================================
-   🗺️ REJILLA DE HOTELES ASIMÉTRICA Y CENTRADA (3 ARRIBA, 2 ABAJO)
+   🗺️ REJILLA DE HOTELES ASIMÉTRICA REAL (3 ARRIBA, 2 ABAJO CENTRAL)
    ========================================================================== */
 .hotels-section-container {
   max-width: 1200px;
@@ -108,7 +117,7 @@
 
 .hotels-section-container h2 {
   text-align: center;
-  font-size: 2.2rem;
+  font-size: 2.5rem;
   color: var(--artiem-dark);
   margin-bottom: 5px;
 }
@@ -119,58 +128,56 @@
   margin-bottom: 40px;
 }
 
-/* Rediseño del contenedor padre Grid */
+/* Forzado estricto del Contenedor de la Rejilla */
 .hotels-premium-grid {
   display: grid !important;
-  grid-template-columns: repeat(6, 1fr) !important;
-  grid-auto-rows: minmax(max-content, max-content); /* Evita el colapso vertical en un bucle */
-  gap: 30px;
-  margin-top: 40px;
-  width: 100%;
+  grid-template-columns: repeat(6, 1fr) !important; /* Base 6 para modularidad */
+  gap: 30px !important;
+  width: 100% !important;
+  box-sizing: border-box;
 }
 
-/* --- Tarjeta Base --- */
+/* --- Estructura Unificada de las Tarjetas --- */
 .hotel-card {
-  background: #ffffff;
-  border-radius: var(--radius);
-  box-shadow: var(--card-shadow);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
+  background: #ffffff !important;
+  border-radius: var(--radius) !important;
+  box-shadow: var(--card-shadow) !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  height: 100% !important;
+  box-sizing: border-box;
   transition: var(--transition);
-  width: 100%;
 }
 
 .hotel-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1) !important;
 }
 
-/* --- 🌟 Reglas de Posicionamiento de Filas Asimétricas 🌟 --- */
+/* --- 🌟 ALINEACIÓN ASIMÉTRICA DIRECTA 🌟 --- */
 
-/* Fila Superior: Los de Menorca se posicionan juntos automáticamente ocupando 2/6 cada uno */
+/* Fila Superior: Los 3 de Menorca se dividen los 6 bloques (2 de ancho cada uno) */
 .hotel-menorca {
   grid-column: span 2 !important;
-  grid-row: 1; /* Forzados explícitamente en la primera línea horizontal */
 }
 
-/* Fila Inferior: Madrid toma columnas centrales de la fila 2 */
+/* Fila Inferior: Madrid se mueve al bloque central izquierdo */
 .hotel-madrid {
   grid-column: 2 / span 2 !important;
-  grid-row: 2; /* Forzado en la segunda línea horizontal */
 }
 
-/* Fila Inferior: Asturias se acopla a su lado derecho en la fila 2 */
+/* Fila Inferior: Asturias se mueve al bloque central derecho */
 .hotel-asturias {
   grid-column: 4 / span 2 !important;
-  grid-row: 2; /* Forzado en la segunda línea horizontal */
 }
 
-/* --- Estilos Interiores de la Tarjeta --- */
+/* --- Estilos de Contenidos Interiores --- */
 .card-image-container {
   position: relative;
   width: 100%;
-  height: 220px;
+  height: 240px;
   overflow: hidden;
   background-color: #eaeaea;
 }
@@ -195,10 +202,10 @@
 }
 
 .card-content {
-  padding: 25px;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
+  padding: 25px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  flex-grow: 1 !important;
 }
 
 .card-content h3 {
@@ -213,42 +220,49 @@
   gap: 6px;
   color: var(--text-muted);
   font-size: 0.9rem;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .btn-explore {
-  display: inline-block;
+  display: block !important;
   text-align: center;
-  border: 1.5px solid #d1d8e0;
-  padding: 10px 20px;
-  border-radius: 6px;
-  text-decoration: none;
+  border: 1.5px solid #d1d8e0 !important;
+  padding: 12px 20px !important;
+  border-radius: 6px !important;
+  text-decoration: none !important;
   font-weight: 600;
-  color: var(--artiem-dark);
-  margin-top: auto;
+  color: var(--artiem-dark) !important;
+  background: transparent !important;
+  margin-top: auto !important; /* Ajuste el botón abajo */
+  transition: var(--transition);
+}
+
+.btn-explore:hover {
+  background: var(--artiem-dark) !important;
+  color: #ffffff !important;
+  border-color: var(--artiem-dark) !important;
 }
 
 .empty-state {
-  grid-column: span 6;
+  grid-column: span 6 !important;
   text-align: center;
-  padding: 40px;
+  padding: 50px;
 }
 
 /* ==========================================================================
-   📱 RESPONSIVE (Tablets y Móviles)
+   📱 RESPONSIVE CONTROLADO
    ========================================================================== */
 @media (max-width: 1024px) {
   .hotels-premium-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-columns: repeat(2, 1fr) !important; /* Grid clásico de 2 columnas en Tablets */
   }
   .hotel-menorca, .hotel-madrid, .hotel-asturias {
     grid-column: span 1 !important;
-    grid-row: auto !important; /* Desactiva el forzado de filas en pantallas pequeñas */
   }
 }
 
 @media (max-width: 768px) {
   .hotels-premium-grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: 1fr !important; /* 1 Sola columna vertical limpia en teléfonos */
   }
 }
