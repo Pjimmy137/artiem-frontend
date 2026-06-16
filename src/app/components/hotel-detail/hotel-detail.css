@@ -452,6 +452,8 @@
     overflow-y: auto;
     padding-right: 8px;
     border: 1px solid #e2e8f0;
+    margin-left: 10px;
+    border-radius: 16px;
 }
 
 .type-card {
@@ -581,6 +583,10 @@
   border-radius: 16px;
   padding: 1.5rem;
 }
+.summary-receipt{
+  flex-grow: 1;
+}
+
 .summary-receipt .receipt-row {
   display: flex;
   justify-content: space-between;
