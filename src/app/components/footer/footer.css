@@ -1,0 +1,188 @@
+/* ==========================================================================
+   🛏️ FOOTER ESTILO CORPORATIVO ARTIEM
+   ========================================================================== */
+
+.artiem-global-footer {
+  background-color: #f6ecdf !important; /* Tono crema idéntico a la captura */
+  color: #1a1a1a !important;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 60px 8% 30px 8% !important;
+  position: relative;
+  box-sizing: border-box;
+  width: 100% !important;
+  border-top: 4px solid #789d4a; /* Línea verde Artiem superior discreta */
+}
+
+/* Distribución de las tres columnas principales */
+.footer-top-container {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-bottom: 50px;
+  width: 100%;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 250px;
+}
+
+/* Tipografías Serif para los títulos de los bloques */
+.footer-column h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 25px;
+  color: #1a1a1a;
+}
+
+.footer-column p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  margin: 6px 0;
+  color: #2d3436;
+}
+
+.footer-column p strong {
+  font-weight: 700;
+  color: #000000;
+}
+
+/* Columna central (Dirección y teléfono principal) */
+.footer-address {
+  padding-top: 55px; /* Alineación visual con los títulos laterales */
+}
+
+.footer-address .main-phone {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-top: 15px;
+}
+
+/* Iconos de Redes Sociales */
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.social-icons a {
+  color: #1a1a1a;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.social-icons a:hover {
+  color: #789d4a;
+  transform: translateY(-2px);
+}
+
+/* Sello de Empresa B Certificada */
+.b-corp-badge {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1.5px solid #1a1a1a;
+  padding: 8px 12px;
+  border-radius: 4px;
+  width: fit-content;
+  text-transform: uppercase;
+  font-weight: 700;
+  background: transparent;
+}
+
+.b-corp-badge .badge-label {
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+}
+
+.b-corp-badge .b-circle {
+  font-size: 1.6rem;
+  border: 2px solid #1a1a1a;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 4px 0;
+  font-family: Arial, sans-serif;
+}
+
+.b-corp-badge .badge-sub {
+  font-size: 0.55rem;
+  letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   🔗 BARRA INFERIOR DE ENLACES LEGALES
+   ========================================================================== */
+.footer-bottom-links {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  padding-top: 25px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 25px 35px;
+}
+
+.footer-bottom-links a {
+  color: #1a1a1a !important;
+  text-decoration: none !important;
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.footer-bottom-links a:hover {
+  color: #789d4a !important;
+}
+
+/* ==========================================================================
+   💬 BOTÓN CHAT FLOTANTE (Fijo abajo a la derecha)
+   ========================================================================== */
+.artiem-chat-float {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background-color: #111b21 !important; /* Tono oscuro idéntico */
+  color: #ffffff !important;
+  border: none !important;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  z-index: 9999;
+  transition: transform 0.2s ease;
+}
+
+.artiem-chat-float:hover {
+  transform: scale(1.08);
+}
+
+/* ==========================================================================
+   📱 RESPONSIVE ADAPTATIVO
+   ========================================================================== */
+@media (max-width: 768px) {
+  .footer-top-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .footer-address {
+    padding-top: 0;
+  }
+
+  .footer-bottom-links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+}
