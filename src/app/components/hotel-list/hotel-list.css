@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 /* Variables de diseño de la marca Artiem */
 :host {
   --artiem-green: #789d4a;
@@ -10,6 +11,7 @@
   --radius: 12px;
   --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
+
 /* ==========================================================================
    📸 PORTADA HERO ESTILO ARTIEM OFICIAL
    ========================================================================== */
@@ -24,7 +26,7 @@
   background: #2d3436;
 }
 
-/* Efecto mosaico de fondo de la captura original */
+/* Efecto mosaico de fondo */
 .hero-bg-split {
   position: absolute;
   inset: 0;
@@ -40,7 +42,7 @@
   filter: brightness(0.85); /* Oscurece un poco para que el texto blanco destaque */
 }
 
-/* Pon aquí los enlaces a tus imágenes de Unsplash o assets locales */
+/* Enlaces a imágenes de fondo de la portada */
 .col-1 { background-image: url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=600'); }
 .col-2 { background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=600'); }
 .col-3 { background-image: url('https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=600'); }
@@ -61,7 +63,7 @@
   font-size: 2.2rem;
   font-weight: 300;
   letter-spacing: 2px;
-  color: #fffb14; /* Amarillo veraniego o blanco sutil */
+  color: #fffb14;
   display: block;
   margin-bottom: 10px;
 }
@@ -93,7 +95,7 @@
 }
 
 .btn-hero-action:hover {
-  background: #789d4a; /* Tu verde corporativo */
+  background: var(--artiem-green);
   color: #ffffff;
   transform: scale(1.03);
 }
@@ -107,37 +109,130 @@
   padding: 0 20px;
 }
 
+.hotels-section-container h2 {
+  text-align: center;
+  color: var(--artiem-dark);
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+}
+
 .hotels-premium-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr); /* Usamos base 6 para poder centrar la segunda fila */
+  grid-template-columns: repeat(6, 1fr); /* Base 6 para la asimetría */
   gap: 30px;
   margin-top: 40px;
 }
 
-/* Los 3 de Menorca arriba ocupan 2 columnas cada uno (2x3 = 6) */
+/* --- Estilo unificado de las Tarjetas de Hotel --- */
+.hotel-card {
+  background: #ffffff;
+  border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
+}
+
+.hotel-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Manejo de Imágenes dentro de las Tarjetas --- */
+.card-image-container {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  background-color: #eaeaea;
+}
+
+.hotel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+.hotel-card:hover .hotel-image {
+  transform: scale(1.05);
+}
+
+.badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: var(--artiem-dark);
+  color: #ffffff;
+  padding: 6px 14px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-radius: 4px;
+}
+
+/* --- Contenido de texto --- */
+.card-content {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card-content h3 {
+  font-size: 1.4rem;
+  color: var(--artiem-dark);
+  margin: 0 0 10px 0;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+.location svg {
+  color: var(--artiem-green);
+}
+
+.btn-explore {
+  display: inline-block;
+  text-align: center;
+  background: transparent;
+  color: var(--artiem-dark);
+  border: 1.5px solid #d1d8e0;
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-top: auto; /* Empuja el botón al fondo si los textos varían */
+  transition: var(--transition);
+}
+
+.btn-explore:hover {
+  background: var(--artiem-dark);
+  color: #ffffff;
+  border-color: var(--artiem-dark);
+}
+
+/* --- 🌟 Reglas de Posicionamiento del Grid 🌟 --- */
+
+/* Fila superior: Ocupan 2 columnas de 6 cada uno (2 * 3 = 6) */
 .hotel-menorca {
   grid-column: span 2;
 }
 
-/* Los 2 de abajo ocupan 2 columnas cada uno pero dejamos márgenes a los lados */
-.hotel-other.madrid {
-  grid-column: 2 / span 2; /* Empieza en la columna 2, dejando la 1 vacía */
-}
-
-.hotel-other.asturias {
-  grid-column: 4 / span 2; /* Se coloca al lado, dejando la columna 6 vacía */
-}
-
-/* Ajuste responsive para que en móviles pasen a ser una lista vertical limpia */
-@media (max-width: 300px) {
-  .hotels-premium-grid {
-    grid-template-columns: 1fr;
-  }
-  .hotel-menorca, .hotel-other.madrid, .hotel-other.asturias {
-    grid-column: span 1 !important;
-  }
-  .hero-bg-split {
-    grid-template-columns: repeat(2, 1fr); /* Reducimos columnas de fondo en móvil */
-  }
-  .hero-content-main h1 { font-size: 2.2rem; }
-}
+/* Fila
