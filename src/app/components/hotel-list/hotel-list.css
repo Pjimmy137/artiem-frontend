@@ -10,163 +10,134 @@
   --radius: 12px;
   --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
-  color: var(--text-main);
-}
-
-/* Cabecera */
-.main-header {
-  text-align: center;
-  margin-bottom: 50px;
-
-}
-
-.main-header h1 {
-  font-size: 2.5rem;
-  color: var(--artiem-dark);
-  font-weight: 700;
-  margin-bottom: 10px;
-  margin-top: 2000px;
-}
-
-.main-header .subtitle {
-  color: var(--text-muted);
-  font-size: 1.1rem;
-}
-
-/* Grid de Hoteles */
-.hotel-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 30px;
-}
-
-/* Tarjeta de Hotel */
-.hotel-card {
-  background: #ffffff;
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: var(--card-shadow);
-  transition: var(--transition);
-  display: flex;
-  flex-direction: column;
-  border: 1px solid rgba(120, 157, 74, 0.1);
-}
-
-.hotel-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(120, 157, 74, 0.12);
-}
-
-/* Contenedor de la imagen real */
-.card-image-container {
-  height: 220px;
+/* ==========================================================================
+   📸 PORTADA HERO ESTILO ARTIEM OFICIAL
+   ========================================================================== */
+.home-hero {
   position: relative;
+  width: 100%;
+  height: calc(100vh - 70px); /* Ocupa toda la pantalla restando el Navbar */
   overflow: hidden;
-  background-color: #f4f7f1;
-}
-
-/* La imagen en sí */
-.hotel-image {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover; /* Esto hace que la foto se adapte sin deformarse */
-  transition: var(--transition);
-}
-
-/* Efecto zoom muy pro cuando pasas el ratón por la tarjeta */
-.hotel-card:hover .hotel-image {
-  transform: scale(1.05);
-}
-
-.no-image-placeholder {
-  width: 100%;
-  height: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
-  background: #e9ecef;
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
-.badge {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  background: #ffffff;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--artiem-green);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-}
-
-/* Contenido de la Tarjeta */
-.card-content {
-  padding: 25px;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-
-.card-content h3 {
-  font-size: 1.4rem;
-  margin: 0 0 10px 0;
-  color: var(--artiem-dark);
-}
-
-.location {
-  display: flex;
   align-items: center;
-  gap: 6px;
-  color: var(--text-muted);
-  font-size: 0.95rem;
-  margin-bottom: 20px;
+  background: #2d3436;
 }
 
-.location svg {
-  stroke: var(--artiem-green);
+/* Efecto mosaico de fondo de la captura original */
+.hero-bg-split {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  z-index: 1;
 }
 
-.btn-explore {
-  margin-top: auto;
-  background: transparent;
-  border: 2px solid var(--artiem-green);
-  color: var(--artiem-green);
-  padding: 12px 20px;
-  border-radius: 8px;
+.hero-column {
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  filter: brightness(0.85); /* Oscurece un poco para que el texto blanco destaque */
+}
+
+/* Pon aquí los enlaces a tus imágenes de Unsplash o assets locales */
+.col-1 { background-image: url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=600'); }
+.col-2 { background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=600'); }
+.col-3 { background-image: url('https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=600'); }
+.col-4 { background-image: url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?q=80&w=600'); }
+
+/* Textos centrados de la portada */
+.hero-content-main {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #ffffff;
+  padding: 20px;
+  max-width: 800px;
+}
+
+.hero-tagline {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: #fffb14; /* Amarillo veraniego o blanco sutil */
+  display: block;
+  margin-bottom: 10px;
+}
+
+.hero-content-main h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin: 0 0 15px 0;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.hero-content-main p {
+  font-size: 1.2rem;
+  opacity: 0.95;
+  margin-bottom: 30px;
+}
+
+.btn-hero-action {
+  background: #ffffff;
+  color: #2d3436;
+  border: none;
+  padding: 14px 32px;
   font-size: 1rem;
   font-weight: 600;
+  letter-spacing: 1px;
+  border-radius: 4px;
   cursor: pointer;
-  transition: var(--transition);
-  width: 100%;
-  display: block;
-  text-align: center;
-  text-decoration: none;
-  box-sizing: border-box;
+  transition: all 0.3s ease;
 }
 
-.btn-explore:hover {
-  background: var(--artiem-green);
+.btn-hero-action:hover {
+  background: #789d4a; /* Tu verde corporativo */
   color: #ffffff;
+  transform: scale(1.03);
 }
 
-/* Estado Vacío */
-.empty-state {
-  grid-column: 1/-1;
-  text-align: center;
-  padding: 60px;
-  color: var(--text-muted);
-  background: #fff;
-  border-radius: var(--radius);
-  border: 2px dashed #ddd;
-}/*# sourceMappingURL=hotel-list.css.map */
+/* ==========================================================================
+   🗺️ REJILLA DE HOTELES ASIMÉTRICA Y CENTRADA (3 ARRIBA, 2 ABAJO)
+   ========================================================================== */
+.hotels-section-container {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+
+.hotels-premium-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* Usamos base 6 para poder centrar la segunda fila */
+  gap: 30px;
+  margin-top: 40px;
+}
+
+/* Los 3 de Menorca arriba ocupan 2 columnas cada uno (2x3 = 6) */
+.hotel-menorca {
+  grid-column: span 2;
+}
+
+/* Los 2 de abajo ocupan 2 columnas cada uno pero dejamos márgenes a los lados */
+.hotel-other.madrid {
+  grid-column: 2 / span 2; /* Empieza en la columna 2, dejando la 1 vacía */
+}
+
+.hotel-other.asturias {
+  grid-column: 4 / span 2; /* Se coloca al lado, dejando la columna 6 vacía */
+}
+
+/* Ajuste responsive para que en móviles pasen a ser una lista vertical limpia */
+@media (max-width: 992px) {
+  .hotels-premium-grid {
+    grid-template-columns: 1fr;
+  }
+  .hotel-menorca, .hotel-other.madrid, .hotel-other.asturias {
+    grid-column: span 1 !important;
+  }
+  .hero-bg-split {
+    grid-template-columns: repeat(2, 1fr); /* Reducimos columnas de fondo en móvil */
+  }
+  .hero-content-main h1 { font-size: 2.2rem; }
+}
