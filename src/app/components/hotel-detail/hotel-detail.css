@@ -819,7 +819,7 @@
 .modal-body p,
 .modal-body span,
 .modal-body button {
-  font-family: 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif !important;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 /* 2. Forzamos el colchón (padding) en las tarjetas de los extras para alejarlos de los bordes */
