@@ -452,7 +452,7 @@
     overflow-y: auto;
     padding-right: 8px;
     border: 1px solid #e2e8f0;
-    margin-left: 10px;
+    padding-left: 10px;
     border-radius: 16px;
 }
 
@@ -585,6 +585,9 @@
 }
 .summary-receipt{
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .summary-receipt .receipt-row {
