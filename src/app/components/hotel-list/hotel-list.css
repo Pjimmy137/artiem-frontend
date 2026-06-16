@@ -18,7 +18,7 @@
 .home-hero {
   position: relative;
   width: 100%;
-  height: calc(100vh - 70px); /* Ocupa toda la pantalla restando el Navbar */
+  height: calc(100vh - 70px);
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -26,7 +26,6 @@
   background: #2d3436;
 }
 
-/* Efecto mosaico de fondo */
 .hero-bg-split {
   position: absolute;
   inset: 0;
@@ -39,16 +38,14 @@
   background-size: cover;
   background-position: center;
   height: 100%;
-  filter: brightness(0.85); /* Oscurece un poco para que el texto blanco destaque */
+  filter: brightness(0.85);
 }
 
-/* Enlaces a imágenes de fondo de la portada */
 .col-1 { background-image: url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=600'); }
 .col-2 { background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=600'); }
 .col-3 { background-image: url('https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=600'); }
 .col-4 { background-image: url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?q=80&w=600'); }
 
-/* Textos centrados de la portada */
 .hero-content-main {
   position: relative;
   z-index: 2;
@@ -109,10 +106,24 @@
   padding: 0 20px;
 }
 
-/* El secreto está aquí: Forzamos la cuadrícula de 6 columnas */
+.hotels-section-container h2 {
+  text-align: center;
+  font-size: 2.2rem;
+  color: var(--artiem-dark);
+  margin-bottom: 5px;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--text-muted);
+  margin-bottom: 40px;
+}
+
+/* Rediseño del contenedor padre Grid */
 .hotels-premium-grid {
   display: grid !important;
   grid-template-columns: repeat(6, 1fr) !important;
+  grid-auto-rows: minmax(max-content, max-content); /* Evita el colapso vertical en un bucle */
   gap: 30px;
   margin-top: 40px;
   width: 100%;
@@ -127,7 +138,7 @@
   display: flex;
   flex-direction: column;
   transition: var(--transition);
-  width: 100%; /* Asegura que rellene su espacio asignado en el grid */
+  width: 100%;
 }
 
 .hotel-card:hover {
@@ -135,24 +146,27 @@
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
-/* --- 🌟 Reglas de Posicionamiento del Grid Exacto 🌟 --- */
+/* --- 🌟 Reglas de Posicionamiento de Filas Asimétricas 🌟 --- */
 
-/* Fila superior: Cada uno de los 3 de Menorca toma 2 columnas de las 6 disponibles (2x3 = 6) */
+/* Fila Superior: Los de Menorca se posicionan juntos automáticamente ocupando 2/6 cada uno */
 .hotel-menorca {
   grid-column: span 2 !important;
+  grid-row: 1; /* Forzados explícitamente en la primera línea horizontal */
 }
 
-/* Fila inferior: Madrid empieza en la columna 2 y ocupa 2 espacios (deja libre la col 1) */
+/* Fila Inferior: Madrid toma columnas centrales de la fila 2 */
 .hotel-madrid {
   grid-column: 2 / span 2 !important;
+  grid-row: 2; /* Forzado en la segunda línea horizontal */
 }
 
-/* Fila inferior: Asturias empieza en la columna 4 y ocupa 2 espacios (deja libre la col 6) */
+/* Fila Inferior: Asturias se acopla a su lado derecho en la fila 2 */
 .hotel-asturias {
   grid-column: 4 / span 2 !important;
+  grid-row: 2; /* Forzado en la segunda línea horizontal */
 }
 
-/* --- Resto de estilos interiores (Imágenes, textos, botones...) --- */
+/* --- Estilos Interiores de la Tarjeta --- */
 .card-image-container {
   position: relative;
   width: 100%;
@@ -214,8 +228,14 @@
   margin-top: auto;
 }
 
+.empty-state {
+  grid-column: span 6;
+  text-align: center;
+  padding: 40px;
+}
+
 /* ==========================================================================
-   📱 RESPONSIVE (Evita que se rompa en pantallas pequeñas)
+   📱 RESPONSIVE (Tablets y Móviles)
    ========================================================================== */
 @media (max-width: 1024px) {
   .hotels-premium-grid {
@@ -223,6 +243,7 @@
   }
   .hotel-menorca, .hotel-madrid, .hotel-asturias {
     grid-column: span 1 !important;
+    grid-row: auto !important; /* Desactiva el forzado de filas en pantallas pequeñas */
   }
 }
 
