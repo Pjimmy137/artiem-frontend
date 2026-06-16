@@ -170,3 +170,109 @@
   border-radius: var(--radius);
   border: 2px dashed #ddd;
 }/*# sourceMappingURL=hotel-list.css.map */
+
+
+/* ===========================
+   🌿 SECCIÓN ECOACTIONS
+   =========================== */
+.ecoactions-section {
+  background-color: #f6ecdf !important; /* Mismo fondo crema de la marca */
+  padding: 80px 10% !important;
+  box-sizing: border-box;
+  width: 100% !important;
+}
+
+/* Cabecera de la sección */
+.ecoactions-header {
+  max-width: 800px;
+  margin-bottom: 60px;
+}
+
+.ecoactions-header h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 3.5rem; /* Letras gigantes tipográficas */
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 25px 0;
+}
+
+.ecoactions-subtitle {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #2d3436;
+  letter-spacing: 0.5px;
+}
+
+.ecoactions-subtitle strong {
+  font-weight: 700;
+  color: #000000;
+}
+
+/* Rejilla cuadriculada limpia de 4 columnas */
+.ecoactions-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 50px 40px !important; /* Espaciado generoso entre las filas y columnas */
+  width: 100%;
+}
+
+/* Cada tarjeta de acción ecológica */
+.eco-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+/* Contenedor del icono minimalista */
+.eco-icon {
+  color: #2d3436;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Título del ítem */
+.eco-card h3 {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #000000;
+  margin: 0 0 15px 0;
+  text-transform: uppercase;
+}
+
+/* Texto explicativo */
+.eco-card p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #535c68;
+  margin: 0;
+}
+
+/* ==========================================================================
+   📱 RESPONSIVE PARA ECOACTIONS
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .ecoactions-grid {
+    grid-template-columns: repeat(2, 1fr) !important; /* 2 columnas en tablets */
+    gap: 40px 30px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .ecoactions-section {
+    padding: 50px 6% !important;
+  }
+
+  .ecoactions-header h2 {
+    font-size: 2.8rem;
+  }
+
+  .ecoactions-grid {
+    grid-template-columns: 1fr !important; /* 1 columna en móviles */
+    gap: 35px !important;
+  }
+}
