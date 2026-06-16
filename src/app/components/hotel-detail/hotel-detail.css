@@ -427,8 +427,6 @@
   .benefits-section { flex-direction: column; margin: 40px auto; }
 }
 
-
-
 .booking-layout {
   display: grid;
   grid-template-columns: 1.2fr 2fr 1fr; /* Exactamente la proporción 1/4 - 2/4 - 1/4 ensanchando el calendario */
@@ -812,47 +810,54 @@
 }
 
 
-/* 1. Unificamos la tipografía de TODA la ventana de extras */
-.modal-content,
-.modal-body,
-.modal-body *,
-.modal-body p,
-.modal-body span,
-.modal-body button {
-  font-family: system-ui, sans-serif !important;
+/* ==========================================================================
+   🌟 SECCIÓN WELLNESS & MODAL AJUSTES DE DISEÑO FINALES
+   ========================================================================== */
+
+/* 1. Unificamos de forma estricta la fuente de todo el contenido del modal */
+.modal-window,
+.modal-window *,
+.modal-header h2,
+.extra-info h3,
+.extra-desc,
+.extra-price span,
+.btn-add-extra,
+.modal-footer * {
+  font-family: 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif !important;
 }
 
-/* 2. Forzamos el colchón (padding) en las tarjetas de los extras para alejarlos de los bordes */
-.modal-body .card,
-div[class*="card"] {
-  padding: 20px !important; /* Más espacio interno para que respire */
-  box-sizing: border-box !important;
+/* 2. Corregimos el padding interno para despegarlos de los bordes laterales y esquinas */
+.extra-info {
+  padding: 1.5rem 1.5rem 1.25rem 1.5rem !important; /* Añadimos más aire a los lados */
 }
 
-/* 3. Despegamos los textos laterales de la descripción y títulos */
-.modal-body h3,
-.modal-body h5,
-.modal-body p {
-  padding-left: 8px !important;
-  padding-right: 8px !important;
+/* 3. Evitamos de forma radical que el título y la descripción toquen los extremos de la tarjeta */
+.extra-info h3,
+.extra-desc {
+  padding-left: 4px !important;
+  padding-right: 4px !important;
 }
 
-/* 4. Separación radical de la fila inferior (Precios y Botones) respecto a los extremos */
-.modal-body div [style*= "display: flex"],
-.modal-body .d-flex,
-.modal-body [style*="justify-content: space-between"] {
-  padding-left: 8px !important;
-  padding-right: 8px !important;
-  margin-bottom: 4px !important;
+/* 4. Forzamos un margen de seguridad interno en la fila del precio y el botón */
+.extra-footer {
+  padding-left: 4px !important;
+  padding-right: 4px !important;
+  padding-top: 1.25rem !important;
+  padding-bottom: 0.25rem !important;
+  border-top: 1px solid #f1f5f9 !important;
 }
 
-/* 5. Estilo limpio y estilizado para los precios (Estilo de la captura del traslado) */
-.modal-body .precio-destacado,
-.modal-body strong,
-.modal-body span:contains("€"),
-.modal-body h3:has-text("€") {
-  font-size: 1.3rem !important;
+/* 5. Acabado tipográfico idéntico a la segunda captura para el precio */
+.extra-price span {
+  font-size: 1.35rem !important;
   font-weight: 700 !important;
-  color: #1a202c !important;
+  color: #1a202c !important; /* Un tono más oscuro, nítido y premium */
   letter-spacing: -0.02em !important;
+}
+
+/* 6. Ajuste fino del botón añadir para equilibrar los márgenes de los extremos */
+.btn-add-extra {
+  margin-right: 2px !important;
+  padding: 8px 22px !important;
+  font-weight: 600 !important;
 }
