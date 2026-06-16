@@ -447,8 +447,8 @@
 
 /* --- TARJETAS DE TIPOS DE HABITACIÓN --- */
 
-.col-rooms {
-    height: 427px;
+.rooms-list {
+    height: 416px;
     overflow-y: auto;
     padding-right: 8px;
 }
@@ -573,7 +573,7 @@
 
 /* --- RESUMEN FIJO --- */
 .sticky-summary {
-  height: 427px;
+  height: 416px;
   top: 100px;
   background: #fff;
   border: 1px solid #e2e8f0;
